@@ -11,6 +11,7 @@ import {
   ProfileStatusDto,
   ReadMessageDto,
   SendPresenceDto,
+  UpdateContactDto,
   UpdateMessageDto,
   WhatsAppNumberDto,
 } from '@api/dto/chat.dto';
@@ -92,6 +93,10 @@ export class ChatController {
 
   public async updateProfileName({ instanceName }: InstanceDto, data: ProfileNameDto) {
     return await this.waMonitor.waInstances[instanceName].updateProfileName(data.name);
+  }
+
+  public async updateContact({ instanceName }: InstanceDto, data: UpdateContactDto) {
+    return await this.waMonitor.waInstances[instanceName].updateContact(data);
   }
 
   public async updateProfileStatus({ instanceName }: InstanceDto, data: ProfileStatusDto) {
