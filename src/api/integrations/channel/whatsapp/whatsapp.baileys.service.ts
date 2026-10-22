@@ -4049,6 +4049,10 @@ export class BaileysStartupService extends ChannelStartupService {
   }
 
   public async updateContact(data: UpdateContactDto) {
+    if (!this.client || this.stateConnection?.state !== 'open') {
+      throw new BadRequestException('Instance is not connected');
+    }
+
     const jid = createJid(data.number);
 
     if (isJidGroup(jid) || isJidNewsletter(jid) || isJidBroadcast(jid)) {
